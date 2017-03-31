@@ -42,6 +42,7 @@
     ```
 
 7. 由于使用[七牛云存储][1]，所以需要配置图片处理样式，分割符为“ - ”，必须配置，否则图片无法使用
+
     - - -
         名称： `800`
         处理接口： 自行控制水印等，宽度800
@@ -57,6 +58,14 @@
     - - -
         名称：`avatar.png`
         处理接口：`imageView2/1/w/100/h/100/q/100/format/png`
+		
+		
+	注意： 七牛选择华北地区报错 
+	
+	找到：/app/libs/Qiniu.php 文件下：
+	 const QINIU_UP_HOST = 'http://upload-z1.qiniu.com';
+    把 http://upload.qiniu.com   替换成   http://upload-z1.qiniu.com
+		
 
 8. 针对启用xunsearch的用户，考虑到数据的一致性和老数据的同步，项目根目录下提供 console 脚本文件，项目根目录下执行 ``` ./console index/push-all ``` 命令即可全量推送数据到索引服务器，建议每天定时跑一次该脚本。
 
