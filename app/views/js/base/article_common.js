@@ -208,7 +208,7 @@ define(function(require, exports, module) {
         var uploader = WebUploader.create({
             auto: true,
             swf: '/app/views/js/vendor/webuploader/Uploader.swf',
-            server: 'https://up.qbox.me/',
+            server: 'http://bbs.soar.so/uploads',
             pick: '#posterPicker',
             fileNumLimit: 1,
             accept: {
@@ -268,7 +268,7 @@ define(function(require, exports, module) {
 
         // 文件上传成功，给item添加成功class, 用样式标记上传成功。
         uploader.on('uploadSuccess', function(file, response) {
-            $("#poster").val(response.key);
+            $("#poster").val(response.data);
             $("#u-tips").addClass('hide');
             $(".poster-img").show();
             layer.msg('上传成功');

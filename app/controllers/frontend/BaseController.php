@@ -300,4 +300,40 @@ class BaseController extends Bootstrap
         }
         return $string;
     }
+
+
+    /**
+     * 生成随机数字字符串
+     * @method randomNumber
+     * @param  integer        $length [description]
+     * @return [type]                 [description]
+     */
+    protected static function randomNumber($length = 6)
+    {
+        $chars = '0123456789';
+        $string = '';
+        for ($i = 0; $i < $length; $i++) {
+            $string .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);
+        }
+        return $string;
+    }
+
+
+    /**
+     * 发送注册验证码
+     * @param $phone
+     * @return bool
+     */
+    protected static function sendRegisterCode($phone)
+    {
+        $tplId = Roc::get('sms.code_tplid');
+        $code = self::randomNumber(6);
+        $content = [
+            'code' => $code,
+            'time' => 1800
+        ];
+        self::sendSms($tplId, $phone, $content);
+        return true;
+    }
+
 }

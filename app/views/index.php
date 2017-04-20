@@ -102,14 +102,14 @@
                     {/loop}
                 </div>
             </div>
-            <!-- 二维码.螺壳云 -->
+            <!-- 二维码 -->
             <div class="box box-success">
                 <div class="box-header with-border">
                   <h5 class="box-title"><i class="fa fa-qrcode margin-r-5"></i> 扫一扫，关注我</h5>
                 </div>
                 <div class="box-body row">
                     <div class="col-md-12">
-                        <img src="https://ask.luoke.io/static/qrcode.jpeg" style="width: 100%;">
+                        <img src="/dist/img/qrcode.png" style="width: 100%;">
                     </div>
                 </div>
             </div>

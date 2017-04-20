@@ -55,8 +55,8 @@
         var captcha = {
             isOpen: {:(Roc::get('geetest.switch') ? 1 : 0)},
             success: {$captcha.success},
-            geetest: "{$captcha.geetest}",
-            challenge: "{$captcha.challenge}",
+            geetest: "{$captcha.geetest ? $captcha.geetest : ''}",
+            challenge: "{$captcha.challenge ? $captcha.challenge : ''}",
         };
         var params = {
             wxSwitch: {:(Roc::get('wx.switch') ? 1 : 0)},

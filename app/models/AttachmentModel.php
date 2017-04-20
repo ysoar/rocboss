@@ -53,6 +53,18 @@ class AttachmentModel extends Model
 
     public function convertPath($path, $size = 800)
     {
-        return (Roc::request()->secure ? 'https://' : 'http://').Roc::get('qiniu.domain').'/'.$path.'-'.$size.'.png';
+
+        if (!$path) {
+            return '';
+        }
+
+        //处理有 http 、 https 的图片,获取完整路径
+        if (strstr($path, 'http') || strstr($path, 'https')) {
+            return $path;
+
+        } else {
+
+            return (Roc::request()->secure ? 'https://' : 'http://') . Roc::get('qiniu.domain') . '/' . $path . '-' . $size . '.png';
+        }
     }
 }

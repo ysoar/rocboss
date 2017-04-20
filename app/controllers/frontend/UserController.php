@@ -528,8 +528,10 @@ class UserController extends BaseController
         }
 
         $redis = UserModel::m()->redis();
-        $data = $redis->get('avatar:'.$uid);
 
+        //暂时处理无头像
+        $uid = 0;
+        $data = $redis->get('avatar:'.$uid);
         if (!empty($data)) {
             return $data;
         } else {

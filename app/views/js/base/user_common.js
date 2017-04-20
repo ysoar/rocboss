@@ -441,7 +441,7 @@ define(function(require, exports, module) {
         var uploader = WebUploader.create({
             auto: true,
             swf: '/app/_static/js/vendor/webuploader/Uploader.swf',
-            server: 'https://up.qbox.me/',
+            server: 'http://bbs.soar.so/uploads',
             pick: '#avatarPicker',
             fileNumLimit: 1,
             accept: {
