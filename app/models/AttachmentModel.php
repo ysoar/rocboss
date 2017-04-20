@@ -58,7 +58,7 @@ class AttachmentModel extends Model
             return '';
         }
 
-        //´¦ÀíÓĞ http ¡¢ https µÄÍ¼Æ¬,»ñÈ¡ÍêÕûÂ·¾¶
+        //å¤„ç†æœ‰ http ã€ https çš„å›¾ç‰‡,è·å–å®Œæ•´è·¯å¾„
         if (strstr($path, 'http') || strstr($path, 'https')) {
             return $path;
 

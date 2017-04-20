@@ -70,6 +70,9 @@ return [
 
     ['GET|POST /register(/@type:qq|weibo|weixin)', 'frontend\User:register'],
 
+    //发送注册验证码
+    ['GET|POST /send/registercode/@phone:[0-9]+', 'frontend\User:registerCode'],
+
     ['POST /add/topic', 'frontend\Post:addTopic'],
 
     ['POST /add/article', 'frontend\Post:addArticle'],

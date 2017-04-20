@@ -1601,4 +1601,23 @@ class UserController extends BaseController
             // parent::json('error', $e->getMessage());
         }
     }
+
+
+    /**
+     * 发送注册验证码
+     * @param $phone
+     */
+    public static function registerCode($phone)
+    {
+        try {
+            $result = parent::sendRegisterCode($phone);
+            if (!$result) {
+                parent::renderJson(10001,'error', ['发送验证码失败']);
+            }
+
+        } catch (\Exception $e) {
+             parent::renderJson($e->getCode(),'error', $e->getMessage());
+        }
+    }
+
 }

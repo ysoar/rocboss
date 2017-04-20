@@ -3,6 +3,7 @@ namespace frontend;
 
 use Bootstrap;
 use Roc;
+use Validate;
 
 class BaseController extends Bootstrap
 {
@@ -35,6 +36,7 @@ class BaseController extends Bootstrap
         '10411' => '不开放注册',
         '10412' => '该账户已绑定微信',
         '10413' => '微信授权已超时',
+        '10420' => '手机号格式有误',
     ];
 
     /**
@@ -323,14 +325,30 @@ class BaseController extends Bootstrap
      * 发送注册验证码
      * @param $phone
      * @return bool
+     * @throws \Exception
      */
     protected static function sendRegisterCode($phone)
     {
+        //手机号验证
+        if (!Validate::mobile($phone)) {
+            throw new \Exception("充值记录添加失败", 10420);
+        }
+
+        //设置验证码缓存
+        $key = 'register:' . $phone;
+        $valid_time = 300;   //秒
+        $code = Roc::redis()->get($key);
+        if (!empty($code)) {
+            $code = self::randomNumber(6);
+            Roc::redis()->setex($key, $valid_time, $code);
+        }
+
+        //发送验证码
         $tplId = Roc::get('sms.code_tplid');
-        $code = self::randomNumber(6);
+        $minute = $valid_time / 60;
         $content = [
             'code' => $code,
-            'time' => 1800
+            'minute' => $minute
         ];
         self::sendSms($tplId, $phone, $content);
         return true;
